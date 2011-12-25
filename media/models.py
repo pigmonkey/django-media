@@ -5,7 +5,7 @@ from django.db.models import permalink
 from django.conf import settings
 
 from taggit.managers import TaggableManager
-from basic.media.exif import show_exif
+from media.exif import show_exif
 
 class AudioSet(models.Model):
     """AudioSet model"""

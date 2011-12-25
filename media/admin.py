@@ -1,5 +1,5 @@
 from django.contrib import admin
-from basic.media.models import *
+from media.models import *
 
 
 class AudioSetAdmin(admin.ModelAdmin):

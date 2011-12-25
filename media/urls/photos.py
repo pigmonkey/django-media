@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from basic.media.models import *
+from media.models import *
 
 
 photo_list = {
