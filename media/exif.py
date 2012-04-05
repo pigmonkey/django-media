@@ -1,6 +1,7 @@
 from PIL import Image
 from PIL.ExifTags import TAGS
 
+
 def show_exif(file):
     """
     Return a dictionary of decoded exif data.

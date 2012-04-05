@@ -7,6 +7,7 @@ from django.conf import settings
 from taggit.managers import TaggableManager
 from media.exif import show_exif
 
+
 class AudioSet(models.Model):
     """AudioSet model"""
     title = models.CharField(max_length=255)
@@ -24,15 +25,17 @@ class AudioSet(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('audio_set_detail', None, { 'slug': self.slug })
+        return ('audio_set_detail', None, {'slug': self.slug})
 
 
 class Audio(models.Model):
     """Audio model"""
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    still = models.FileField(upload_to='audio_stills', blank=True, help_text='An image that will be used as a thumbnail.')
-    audio = models.FilePathField(path=settings.MEDIA_ROOT+'audios/', recursive=True)
+    still = models.FileField(upload_to='audio_stills', blank=True,
+                             help_text='An image that will be used as a thumbnail.')
+    audio = models.FilePathField(path=settings.MEDIA_ROOT + 'audios/',
+                                 recursive=True)
     description = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
@@ -47,7 +50,7 @@ class Audio(models.Model):
 
     @permalink
     def get_absolute_url(self):
-      return ('audio_detail', None, { 'slug': self.slug })
+        return ('audio_detail', None, {'slug': self.slug})
 
 
 class PhotoSet(models.Model):
@@ -61,14 +64,14 @@ class PhotoSet(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     class Meta:
-      db_table = 'media_photo_sets'
+        db_table = 'media_photo_sets'
 
     def __unicode__(self):
-      return '%s' % self.title
+        return '%s' % self.title
 
     @permalink
     def get_absolute_url(self):
-      return ('photo_set_detail', None, { 'slug': self.slug })
+        return ('photo_set_detail', None, {'slug': self.slug})
 
 
 class Photo(models.Model):
@@ -109,7 +112,7 @@ class Photo(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('photo_detail', None, { 'slug': self.slug })
+        return ('photo_detail', None, {'slug': self.slug})
 
     def save(self):
         # The model's real save must be called first, so that the file is
@@ -119,7 +122,8 @@ class Photo(models.Model):
         # not be found, set it to the current time.
         if self.original is None:
             if 'DateTimeOriginal' in self.exif:
-                self.original = datetime.strptime(self.exif['DateTimeOriginal'][:19], '%Y:%m:%d %H:%M:%S')
+                self.original = datetime.strptime(self.exif['DateTimeOriginal'][:19],
+                                                  '%Y:%m:%d %H:%M:%S')
             else:
                 self.original = datetime.now()
             # The real save must be called *again*, so that the original date
@@ -144,15 +148,17 @@ class VideoSet(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('video_set_detail', None, { 'slug': self.slug })
+        return ('video_set_detail', None, {'slug': self.slug})
 
 
 class Video(models.Model):
     """Video model"""
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    still = models.FileField(upload_to='video_stills', blank=True, help_text='An image that will be used as a thumbnail.')
-    video = models.FilePathField(path=settings.MEDIA_ROOT+'videos/', recursive=True)
+    still = models.FileField(upload_to='video_stills', blank=True,
+                             help_text='An image that will be used as a thumbnail.')
+    video = models.FilePathField(path=settings.MEDIA_ROOT + 'videos/',
+                                 recursive=True)
     description = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
@@ -166,4 +172,4 @@ class Video(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return ('video_detail', None, { 'slug': self.slug })
+        return ('video_detail', None, {'slug': self.slug})

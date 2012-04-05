@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
-from media.models import *
 
+from media.models import *
 
 video_list = {
     'queryset': Video.objects.all(),
@@ -8,7 +8,6 @@ video_list = {
 video_set_list = {
     'queryset': VideoSet.objects.all(),
 }
-
 
 urlpatterns = patterns('django.views.generic.list_detail',
     url(r'^sets/(?P<slug>[-\w]+)/$',
@@ -26,7 +25,7 @@ urlpatterns = patterns('django.views.generic.list_detail',
         kwargs=video_list,
         name='video_detail',
     ),
-    url (r'^$',
+    url(r'^$',
         view='object_list',
         kwargs=video_list,
         name='video_list',
