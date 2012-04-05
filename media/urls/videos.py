@@ -1,33 +1,23 @@
 from django.conf.urls.defaults import *
+from django.views.generic import ListView, DetailView
 
-from media.models import *
+from media.models import Video, VideoSet
 
-video_list = {
-    'queryset': Video.objects.all(),
-}
-video_set_list = {
-    'queryset': VideoSet.objects.all(),
-}
-
-urlpatterns = patterns('django.views.generic.list_detail',
-    url(r'^sets/(?P<slug>[-\w]+)/$',
-        view='object_detail',
-        kwargs=video_set_list,
-        name='video_set_detail',
-    ),
-    url(r'^sets/$',
-        view='object_list',
-        kwargs=video_set_list,
-        name='video_set_list',
+urlpatterns = patterns('',
+    url(r'^$',
+        view=ListView.as_view(model=Video),
+        name='video_list'
     ),
     url(r'^(?P<slug>[-\w]+)/$',
-        view='object_detail',
-        kwargs=video_list,
-        name='video_detail',
+        view=DetailView.as_view(model=Video),
+        name='video_detail'
     ),
-    url(r'^$',
-        view='object_list',
-        kwargs=video_list,
-        name='video_list',
+    url(r'^sets/$',
+        view=ListView.as_view(model=VideoSet),
+        name='video_set_list'
+    ),
+    url(r'^sets/(?P<slug>[-\w]+)/$',
+        view=DetailView.as_view(model=VideoSet),
+        name='video_set_detail',
     ),
 )

@@ -1,33 +1,23 @@
 from django.conf.urls.defaults import *
+from django.views.generic import ListView, DetailView
 
-from media.models import *
+from media.models import Photo, PhotoSet
 
-photo_list = {
-    'queryset': Photo.objects.all(),
-}
-photo_set_list = {
-    'queryset': PhotoSet.objects.all(),
-}
-
-urlpatterns = patterns('django.views.generic.list_detail',
-    url(r'^sets/(?P<slug>[-\w]+)/$',
-        view='object_detail',
-        kwargs=photo_set_list,
-        name='photo_set_detail',
-    ),
-    url(r'^sets/$',
-        view='object_list',
-        kwargs=photo_set_list,
-        name='photo_set_list',
+urlpatterns = patterns('',
+    url(r'^$',
+        view=ListView.as_view(model=Photo),
+        name='photo_list'
     ),
     url(r'^(?P<slug>[-\w]+)/$',
-        view='object_detail',
-        kwargs=photo_list,
-        name='photo_detail',
+        view=DetailView.as_view(model=Photo),
+        name='photo_detail'
     ),
-    url(r'^$',
-        view='object_list',
-        kwargs=photo_list,
-        name='photo_list',
+    url(r'^sets/$',
+        view=ListView.as_view(model=PhotoSet),
+        name='photo_set_list'
+    ),
+    url(r'^sets/(?P<slug>[-\w]+)/$',
+        view=DetailView.as_view(model=PhotoSet),
+        name='photo_set_detail',
     ),
 )
