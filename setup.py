@@ -2,13 +2,21 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'django-media',
+    packages = find_packages(),
     version = '0.1',
     description = 'A basic Django application to store and manage media.',
-    long_description = open('README.md').read(),
+    author = 'Peter Hogg',
+    author_email = 'peter@havenaut.net',
     url = 'https://github.com/pigmonkey/django-media',
-    author = 'Pig Monkey',
-    author_email = 'pm@pig-monkey.com',
-
-    packages = find_packages(),
+    classifiers = [
+        "Programming Language :: Python",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Development Status :: 5 - Production/Stable",
+        "Framework :: Django",
+    ],
+    long_description = open('README.md').read(),
+    include_package_data = True,
     zip_safe=False,
+    install_requires = ['PIL'],
 )
