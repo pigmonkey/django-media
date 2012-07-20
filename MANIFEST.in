@@ -1,4 +1,6 @@
-recursive-include media/templates/ *.html
+recursive-include media/templates/media *.html
+recursive-include media/templates/inlines *.html
+include media/templates/base.html
 
 include LICENSE
 include README.md
