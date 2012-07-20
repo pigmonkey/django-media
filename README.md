@@ -16,6 +16,20 @@ Requirements
 * [Python Imaging Library](http://www.pythonware.com/products/pil/) is required for getting photo EXIF data.
 
 
+Installation
+------------
+
+django-media is available on PyPI and can be installed with PIP.
+
+    pip install django-media
+
+Alternatively, you may download the source and install it.
+
+    python setup.py install
+
+
+
+
 Setup
 -----
 
