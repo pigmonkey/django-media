@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name = 'django-media',
     packages = find_packages(),
-    version = '0.1',
+    version = '1.0',
     description = 'A basic Django application to store and manage media.',
     author = 'Peter Hogg',
     author_email = 'peter@havenaut.net',
